@@ -147,3 +147,49 @@ Database Creation
 
 ![Database Creation](https://github.com/user-attachments/assets/6397f192-593b-4120-940c-98da87008025)
 
+Code for database creation and table creation
+
+```sql
+
+//Database creation
+
+CREATE USER GrpE_26642_Evelyne_BioTxn_DB
+
+IDENTIFIED BY Evelyne;
+
+GRANT CONNECT, RESOURCE, DBA TO GrpE_26642_Evelyne_BioTxn_DB;
+
+//Table creation
+
+CREATE TABLE users (
+    user_id NUMBER PRIMARY KEY,
+    username VARCHAR2(50) NOT NULL UNIQUE,
+    email VARCHAR2(100),
+    created_at DATE DEFAULT SYSDATE
+);
+CREATE TABLE biometric_data (
+    user_id NUMBER PRIMARY KEY, 
+    fingerprint_data BLOB,
+    face_scan BLOB,
+    iris_scan BLOB,
+    created_at DATE DEFAULT SYSDATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+CREATE TABLE transactions (
+    transaction_id NUMBER PRIMARY KEY,
+    user_id NUMBER NOT NULL,
+    transaction_type VARCHAR2(50),
+    amount NUMBER(10, 2),
+    transaction_time DATE DEFAULT SYSDATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+CREATE TABLE authentication_logs (
+    log_id NUMBER PRIMARY KEY,
+    transaction_id NUMBER NOT NULL,
+    user_id NUMBER NOT NULL,
+    auth_status VARCHAR2(20), 
+    attempt_time DATE DEFAULT SYSDATE,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
