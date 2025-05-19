@@ -143,3 +143,7 @@ Presentation of the logical model with a clear ER diagram
 
 #### Phase IV
 
+Database Creation
+
+![Database Creation](https://github.com/user-attachments/assets/6397f192-593b-4120-940c-98da87008025)
+
