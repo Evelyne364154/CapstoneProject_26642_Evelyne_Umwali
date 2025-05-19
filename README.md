@@ -114,15 +114,15 @@ One log entry per transaction authentication attempt.
 
 #### Constraints
 
-email, phone_number → UNIQUE NOT NULL
+- email, phone_number → UNIQUE NOT NULL
 
-biometric_hash → NOT NULL
+- biometric_hash → NOT NULL
 
-status in Transaction → ENUM (Pending, Approved, Failed)
+- status in Transaction → ENUM (Pending, Approved, Failed)
 
-status in AuthenticationLog → ENUM (Success, Failure)
+- status in AuthenticationLog → ENUM (Success, Failure)
 
-amount → CHECK (amount > 0)
+- amount → CHECK (amount > 0)
 
 ### 📩 3. Normalization (Up to 3NF)
 
