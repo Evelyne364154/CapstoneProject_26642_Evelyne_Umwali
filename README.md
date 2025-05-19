@@ -141,9 +141,9 @@ Presentation of the logical model with a clear ER diagram
 
 ![image](https://github.com/user-attachments/assets/884de30b-967d-4650-bcbb-d65c11cdb089)
 
-#### Phase IV
+### Phase IV
 
-Database Creation
+#### Database Creation
 
 ![Database Creation](https://github.com/user-attachments/assets/6397f192-593b-4120-940c-98da87008025)
 
@@ -193,3 +193,260 @@ CREATE TABLE authentication_logs (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 ```
+
+#### Oracle Enterprise Manager (OEM)
+
+Oracle Enterprise Manager (OEM) is not a PL/SQL keyword or feature—it’s Oracle’s web-based administrative console for the entire Oracle technology stack (databases, middleware, engineered systems, cloud services, etc.). When people mention OEM while discussing PL/SQL code, they’re usually talking about using the OEM interface to manage, monitor, or debug that code inside the database.
+
+##### Dashboard of my database.
+
+![OEM dashboard](https://github.com/user-attachments/assets/7d8e7171-689a-40de-8b1a-40f2e84788df)
+
+
+##### Sessions or performance charts.
+
+- Performance metrics
+
+![Performance Metrics](https://github.com/user-attachments/assets/9a130b3b-574d-4a95-8116-ea4df4e05ee0)
+
+- Sql monitoring
+
+![Sql Monitoring](https://github.com/user-attachments/assets/00a2eeed-e0e8-418f-a831-d106bff41541)
+
+## Phase V
+
+#### Table Creation
+
+Here are the created tables & codes used to create them
+
+User table 
+
+```sql
+CREATE TABLE users (
+    user_id NUMBER PRIMARY KEY,
+    username VARCHAR2(50) NOT NULL UNIQUE,
+    email VARCHAR2(100),
+    created_at DATE DEFAULT SYSDATE
+);
+```
+![user table](https://github.com/user-attachments/assets/94142a26-f392-451f-9212-5e379652e89f)
+
+Transaction table
+
+```sql
+CREATE TABLE transactions (
+    transaction_id NUMBER PRIMARY KEY,
+    user_id NUMBER NOT NULL,
+    transaction_type VARCHAR2(50),
+    amount NUMBER(10, 2),
+    transaction_time DATE DEFAULT SYSDATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
+![transaction table](https://github.com/user-attachments/assets/1f947e5c-8c5e-429c-b07a-168feed5fb13)
+
+Biometric Data table
+
+```sql
+CREATE TABLE biometric_data (
+    user_id NUMBER PRIMARY KEY, 
+    fingerprint_data BLOB,
+    face_scan BLOB,
+    iris_scan BLOB,
+    created_at DATE DEFAULT SYSDATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
+
+![BiometricData](https://github.com/user-attachments/assets/f6e1d9d7-bc83-45b2-98e5-c644fc59a15a)
+
+AuthenticationLogs Table
+```sql
+CREATE TABLE authentication_logs (
+    log_id NUMBER PRIMARY KEY,
+    transaction_id NUMBER NOT NULL,
+    user_id NUMBER NOT NULL,
+    auth_status VARCHAR2(20), 
+    attempt_time DATE DEFAULT SYSDATE,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
+
+Inserting data
+
+User table
+
+```sql
+
+INSERT INTO users (user_id, username, email,created_at)
+VALUES (1, 'Niece', 'niece@gmail.com', TO_DATE('2024-05-19','YYYY-MM-DD'));
+INSERT INTO users (user_id, username, email, created_at)
+VALUES (2, 'lina Umuganwa', 'lina@mail.com', TO_DATE('2024-05-19','YYYY-MM-DD'));
+INSERT INTO users (user_id, username,email,created_at)
+VALUES (3, 'Racia Akliza' , 'rc@gmail.com',TO_DATE('2024-04-25','YYYY-MM-DD'));
+
+```
+![UserTable Inserted](https://github.com/user-attachments/assets/2fc4a5fc-7232-443b-a7b0-42a5df58cf7d)
+
+
+Transaction table
+
+```sql
+         
+ INSERT INTO transactions 
+         (transaction_id, 
+          user_id, 
+          transaction_type, 
+          amount,
+          transaction_time)
+    VALUES (101, 
+            1, 
+           'Payment', 
+           2500000,
+           SYSDATE);       
+
+INSERT INTO transactions
+        (transaction_id,
+         user_id,
+         transaction_type,
+         amount,
+         transaction_time)
+VALUES  (102,  
+         2,             
+         'Payment',     
+         1000000,        
+         SYSDATE);
+         
+ INSERT INTO transactions
+        (transaction_id,
+         user_id,
+         transaction_type,
+         amount,
+         transaction_time)
+VALUES  (103,
+         3,             
+         'Deposit',      
+         3000000,        
+         SYSDATE);
+```
+![TransactionTable Inserted](https://github.com/user-attachments/assets/67e98f97-d4cf-45a1-b3d8-54b0f43dd3b4)
+
+
+Biometric data table
+
+```sql
+INSERT INTO biometric_data 
+        (user_id,
+         fingerprint_data, 
+         face_scan,
+         iris_scan,
+         created_at)
+ VALUES (1, 
+         EMPTY_BLOB(),
+         EMPTY_BLOB(),
+         EMPTY_BLOB(),
+         SYSDATE);
+         
+INSERT INTO biometric_data
+        (user_id,
+         fingerprint_data,
+         face_scan,
+         iris_scan,
+         created_at)
+VALUES  (2,          
+         EMPTY_BLOB(),  
+         EMPTY_BLOB(), 
+         EMPTY_BLOB(),  
+         SYSDATE);   
+         
+INSERT INTO biometric_data
+        (user_id,
+         fingerprint_data,
+         face_scan,
+         iris_scan,
+         created_at)
+VALUES  (3,          
+         EMPTY_BLOB(),  
+         EMPTY_BLOB(), 
+         EMPTY_BLOB(),  
+         SYSDATE);
+```
+![Biometricdata Inserted](https://github.com/user-attachments/assets/e98ea2e5-02e4-4d32-87ef-39280e395868)
+
+
+Authentication table
+
+```sql
+   
+ INSERT INTO authentication_logs 
+         (log_id,
+         transaction_id,
+         user_id,
+         auth_status,
+         attempt_time)
+      VALUES (1001,
+             101,
+             1, 
+             'SUCCESS',
+              SYSDATE);
+
+INSERT INTO authentication_logs
+        (log_id,
+         transaction_id,
+         user_id,
+         auth_status,
+         attempt_time)
+VALUES  (1002,  
+         102,   
+         2,
+         'SUCCESS',     
+         SYSDATE);
+ 
+INSERT INTO authentication_logs
+        (log_id,
+         transaction_id,
+         user_id,
+         auth_status,
+         attempt_time)
+VALUES  (1003,  
+         103,   
+         3,
+         'FAIL',     
+         SYSDATE);  
+```
+![AuthenticationLogs table Inserted](https://github.com/user-attachments/assets/7b130ea0-682a-431a-9003-b92fbf028bbe)
+
+#### 3 ▪ Integrity Validation Queries
+
+##### Check each transaction has exactly one latest auth result.
+
+```sql
+        
+SELECT t.transaction_id, COUNT(l.log_id) AS attempts
+FROM   transactions t
+LEFT JOIN authentication_logs l
+       ON l.transaction_id = t.transaction_id
+GROUP  BY t.transaction_id; 
+```
+
+![data integrity validation qeuries ](https://github.com/user-attachments/assets/a40be81b-0787-4524-ad40-4cab50e5d77d)
+
+#### Confirm no orphan biometric rows
+
+An orphan row is a record that has lost (or never had)
+
+If a row in biometrics points to an employee_id that no longer exists (or never existed) in employees, that biometric row is an orphan.
+
+So “orphan biometric rows” simply means biometric-data rows whose foreign-key reference to the parent entity (e.g., employee, user, patient) is broken or missing.
+
+```sql
+SELECT user_id
+FROM   biometric_data b
+LEFT JOIN users u USING (user_id)
+WHERE  user_id IS NULL; 
+```
+
+![Every user_id present in biometric_data is also present in users (Data Integrity)](https://github.com/user-attachments/assets/b89beab8-31e9-4354-9b2d-c98a63f6c185)
+
+
