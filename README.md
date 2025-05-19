@@ -99,22 +99,13 @@ This system also enables real-time monitoring, giving managers access to accurat
 ### 🔃 2. Relationships & Constraints
 
 #### Relationships
+| From Entity | To Entity         | Relationship Type | Description                              |
+| ----------- | ----------------- | ----------------- | ---------------------------------------- |
+| User        | BiometricData     | One-to-One        | One biometric profile per user           |
+| User        | Transaction       | One-to-Many       | Users can perform multiple transactions  |
+| Transaction | AuthenticationLog | One-to-One        | Log created per transaction attempt      |
+| User        | AuthenticationLog | One-to-Many       | Logs tied to user's transaction attempts |
 
-- User ↔ BiometricData: One-to-One
-
-One user has one biometric record.
-
-- User ↔ Transaction: One-to-Many
-
-One user can perform many transactions.
-
-- Transaction ↔ AuthenticationLog: One-to-One
-
-One log entry per transaction authentication attempt.
-
--User ↔ AuthenticationLog:One-to-Many
-One user can have many logs because, every time the same user authorizes a 
-different transaction (or retries after a failure), the system records a new log entry.
 
 #### Constraints
 
