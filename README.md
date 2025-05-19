@@ -273,6 +273,8 @@ CREATE TABLE authentication_logs (
 );
 ```
 
+![AuthenticationLogs table](https://github.com/user-attachments/assets/8c4e9d43-60cb-4d2a-a5d0-3e71d2aa91a2)
+
 Inserting data
 
 User table
