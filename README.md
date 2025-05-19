@@ -85,7 +85,7 @@ Implementing biometric-based authorization reduces fraud and unauthorized access
 
 This system also enables real-time monitoring, giving managers access to accurate, up-to-date information for faster incident response and better resource allocation—key goals of any modern MIS.
 
-## Phase III
+### Phase III
 
 ### 🤯 Logical Model Design
 
@@ -140,10 +140,11 @@ One log entry per transaction authentication attempt.
 
 - Can handle authentication failures (no biometric match) and fraud analysis through remarks
 
-### 📝 5. Presentation & Review
+### 📊 5. Presentation & Review
 Presentation of the logical model with a clear ER diagram 
 
 ![ER Diagram PL](https://github.com/user-attachments/assets/2e06cc98-ecff-4971-a41e-77ee457ffee9)
 
 
+#### Phase IV
 
