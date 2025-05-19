@@ -91,10 +91,10 @@ This system also enables real-time monitoring, giving managers access to accurat
 
 | Entity                | Attributes                                            | PK / FK                             | Data Types                 |
 | --------------------- | ----------------------------------------------------- | ----------------------------------- | -------------------------- |
-| **User**              | user\_id, name, email, phone\_number                  | PK: user\_id                        | INT, VARCHAR, VARCHAR      |
-| **Transaction**       | transaction\_id, user\_id, amount, date, status       | PK: transaction\_id<br>FK: user\_id | INT, DECIMAL, DATE, ENUM   |
-| **BiometricData**     | biometric\_id, user\_id, biometric\_hash, created\_at | PK: biometric\_id<br>FK: user\_id   | INT, VARCHAR, TIMESTAMP    |
-| **AuthenticationLog** | log\_id, transaction\_id, status, timestamp, remarks  | PK: log\_id<br>FK: transaction\_id  | INT, ENUM, TIMESTAMP, TEXT |
+| **User**              | user\_id, username, email, created\_at                  | PK: user\_id                        | INT, VARCHAR, VARCHAR,DATE     |
+| **Transaction**       | transaction\_id, user\_id,trancation\_type, amount, transaction\_time       | PK: transaction\_id<br>FK: user\_id | INT,VARCHAR , DECIMAL, DATE   |
+| **BiometricData**     | user\_id, fingerprint_data, face_scan,iris_scan, created\_at | PK: biometric\_id<br>FK: user\_id   | VARCHAR,VARCHAR, VARCHAR, TIMESTAMP    |
+| **AuthenticationLog** | log\_id, transaction\_id, user_id, auth\_status, attempt\_time  | PK: log\_id<br>FK: transaction\_id  | INT, VARCHAR, DATE |
 
 ### 🔃 2. Relationships & Constraints
 
@@ -111,6 +111,10 @@ One user can perform many transactions.
 - Transaction ↔ AuthenticationLog: One-to-One
 
 One log entry per transaction authentication attempt.
+
+-User ↔ AuthenticationLog:One-to-Many
+One user can have many logs because, every time the same user authorizes a 
+different transaction (or retries after a failure), the system records a new log entry.
 
 #### Constraints
 
@@ -141,10 +145,10 @@ One log entry per transaction authentication attempt.
 - Can handle authentication failures (no biometric match) and fraud analysis through remarks
 
 ### 📊 5. Presentation & Review
+
 Presentation of the logical model with a clear ER diagram 
 
-![ER Diagram PL](https://github.com/user-attachments/assets/2e06cc98-ecff-4971-a41e-77ee457ffee9)
-
+![image](https://github.com/user-attachments/assets/884de30b-967d-4650-bcbb-d65c11cdb089)
 
 #### Phase IV
 
