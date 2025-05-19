@@ -151,7 +151,7 @@ Code for database creation and table creation
 
 ```sql
 
-//Database creation
+-- Database creation
 
 CREATE USER GrpE_26642_Evelyne_BioTxn_DB
 
@@ -159,7 +159,7 @@ IDENTIFIED BY Evelyne;
 
 GRANT CONNECT, RESOURCE, DBA TO GrpE_26642_Evelyne_BioTxn_DB;
 
-//Table creation
+-- Table creation
 
 CREATE TABLE users (
     user_id NUMBER PRIMARY KEY,
