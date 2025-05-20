@@ -5,7 +5,7 @@
 
 ### Phase II
 
-###👌🏽  1. Define the Scope
+### 👌🏽 1. Define the Scope
 ### Business Process:
 # Biometric-Based Transaction Authorization System
 
