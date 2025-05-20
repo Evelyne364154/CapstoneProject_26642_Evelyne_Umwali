@@ -1,13 +1,69 @@
 ## UMWALI DUSENGE Evelyne
+
 ## ID: 26642
+
 ## PL/SQL EXAM.
+
+### Phase I
+
+# BIOMETRIC BASED TRANSACTION SYSTEM
+
+In an era where digital transactions are at the core of daily operations across financial, healthcare, educational, and government sectors, ensuring secure and reliable authorization methods has become critical. Traditional security approaches—such as PINs, passwords, and security tokens—are increasingly vulnerable to breaches, identity theft, and social engineering attacks. To address these challenges, the Biometric-Based Transaction Authorization System offers a modern, robust, and user-friendly solution.
+
+This system leverages biometric technologies—such as fingerprint scanning, facial recognition, and iris detection—to authenticate users based on unique physiological traits. Unlike conventional methods, biometrics provide an inherent level of security that is difficult to replicate or steal. The system is designed to authorize sensitive transactions by verifying the identity of users in real-time, ensuring that only legitimate individuals can complete critical operations.
+
+The Biometric-Based Transaction Authorization System not only enhances the security of transactions but also streamlines the user experience by eliminating the need to remember complex credentials. Whether deployed in banks to prevent financial fraud, in hospitals to safeguard patient data, or in universities to protect academic integrity, the system adapts to diverse environments where authentication matters most.
+
+By integrating advanced biometric authentication mechanisms, this system aims to redefine trust and security in digital transactions, ensuring privacy, accuracy, and compliance with modern data protection standards.
+
+##### Problem Statement
+
+Traditional transaction authorization methods—such as passwords, PINs, and security tokens—are vulnerable to security breaches, identity theft, and human error. These methods lack robust verification of a user’s identity, especially in high-risk sectors involving sensitive or high-value transactions. The absence of strong authentication mechanisms increases the risk of fraud and unauthorized access to financial or confidential data.
+
+##### Context
+
+This system is intended for use in environments where secure, fast, and reliable transaction authorization is critical. Target sectors include:
+
+Banks and financial institutions for customer identity verification during high-value transactions.
+
+Hospitals and healthcare systems for secure access to patient records and authorization of critical medical procedures.
+
+Government offices for validating citizen identity in public service transactions.
+
+Universities and educational institutions for secure student or staff transactions (e.g., exam registrations, access to digital resources).
+
+The system can be integrated into both physical point-of-sale systems and online transaction platforms, ensuring versatility in deployment.
+
+##### Target Users
+
+Bank customers and staff performing or validating transactions.
+
+Healthcare professionals accessing or updating medical records.
+
+Government service agents and citizens involved in secure service delivery.
+
+Students, faculty, and administrators engaging in digital academic services.
+
+Business employees and clients requiring secure login and authorization for enterprise transactions.
+
+##### Project Goals
+
+Enhance Security: Replace weak password/PIN-based authentication with unique biometric identifiers (e.g., fingerprints, facial recognition).
+
+Prevent Fraud: Minimize impersonation, unauthorized access, and transaction tampering through multi-factor biometric verification.
+
+Improve User Experience: Provide fast, seamless, and user-friendly authorization without remembering credentials.
+
+Ensure Data Integrity and Privacy: Implement encrypted storage and secure transmission of biometric data to comply with data protection regulations.
+
+Support Audit and Monitoring: Log and trace every transaction authorization attempt for accountability and legal compliance.
 
 
 ### Phase II
 
 ### 👌🏽 1. Define the Scope
+
 ### Business Process:
-# Biometric-Based Transaction Authorization System
 
 ## 📜 Description:
 This process outlines how a financial or institutional system uses biometric data (such as fingerprint, facial recognition, or iris scan) to authorize transactions securely. The process ensures that only verified users can initiate or approve sensitive operations, especially in banking, healthcare, or government service platforms.
@@ -60,7 +116,8 @@ Organize your diagram using the following swimlanes:
 
 ## 🖇️ The presentation of my process visually using  UML/BPMN Notations.
 
-![pl BPMN](https://github.com/user-attachments/assets/8061254a-2e6a-46c8-b5cf-878f3885cf9a)
+![pl BPMN](https://github.com/user-attachments/assets/38a171ad-1655-4aa8-9dae-1da10227fa58)
+
 
 ## 📘 Explanation of the BPMN Diagram
 
@@ -138,8 +195,8 @@ This system also enables real-time monitoring, giving managers access to accurat
 ### 📊 5. Presentation & Review
 
 Presentation of the logical model with a clear ER diagram 
+![ER Diagram PL](https://github.com/user-attachments/assets/e304a1dc-e39a-4d97-bb9c-bb8bb2836403)
 
-![image](https://github.com/user-attachments/assets/884de30b-967d-4650-bcbb-d65c11cdb089)
 
 ### Phase IV
 
