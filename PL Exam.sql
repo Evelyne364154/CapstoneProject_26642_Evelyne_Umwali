@@ -380,7 +380,7 @@ DECLARE
     v_next_month_end DATE := LAST_DAY(v_next_month_start);
     v_is_holiday NUMBER := 0;
 BEGIN
-    -- Check if today is a weekday (Mon–Fri)
+    -- Check if today is a weekday (MonÂ–Fri)
     SELECT TO_CHAR(v_today, 'DY', 'NLS_DATE_LANGUAGE=ENGLISH') INTO v_day FROM dual;
     IF v_day IN ('MON', 'TUE', 'WED', 'THU', 'FRI') THEN
         RAISE_APPLICATION_ERROR(-20001, 'DML operations are not allowed on weekdays.');
