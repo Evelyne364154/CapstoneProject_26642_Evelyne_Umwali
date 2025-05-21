@@ -745,9 +745,72 @@ END;
 ```
 ### Phase VII
 
+#### 🗂 1. Problem Statement Development
+    
+###### 🔹 Problem Statement:
+In the Biometric-Based Transaction Authorization System, it is critical to ensure that all data manipulations—especially those involving sensitive user and transaction records—are tightly controlled, secure, and auditable. This is to prevent unauthorized changes that could compromise data integrity or breach security regulations.
 
+To address this, the system must:
 
+Restrict users (e.g., employees) from performing insert, update, or delete operations during weekdays (Monday–Friday) and on official public holidays.
 
+Log and audit all critical changes to maintain accountability and support forensic reviews.
 
+Use PL/SQL triggers, packages, and functions to automate these controls.
 
+######🔹 Justification:
+Triggers are required to enforce time-based and holiday-based restrictions on table manipulations.
 
+Packages and functions provide modular and reusable logic for checking holidays and logging activity.
+
+Auditing enables real-time tracking of sensitive operations to strengthen security and support compliance.
+
+#### 📠 2. Trigger Implementation
+
+######🔹 Step 1: Holiday Table
+
+```sql
+CREATE TABLE holidays (
+    holiday_date DATE PRIMARY KEY,
+    description VARCHAR2(100)
+);
+
+-- Sample holidays for next month (e.g., June)
+INSERT INTO holidays VALUES (TO_DATE('2025-06-01', 'YYYY-MM-DD'), 'Independence Day');
+INSERT INTO holidays VALUES (TO_DATE('2025-06-25', 'YYYY-MM-DD'), 'Liberation Day');
+COMMIT;
+
+```
+
+✅ 1. Simple Trigger Implementation
+This trigger blocks INSERT, UPDATE, DELETE on weekdays and public holidays.
+
+🔹 Trigger: trg_restrict_weekday_holiday_dml
+```sql
+CREATE OR REPLACE TRIGGER trg_restrict_weekday_holiday_dml
+BEFORE INSERT OR UPDATE OR DELETE ON transactions
+FOR EACH ROW
+DECLARE
+    v_day VARCHAR2(10);
+    v_today DATE := TRUNC(SYSDATE);
+    v_next_month_start DATE := TRUNC(ADD_MONTHS(SYSDATE, 1), 'MM');
+    v_next_month_end DATE := LAST_DAY(v_next_month_start);
+    v_is_holiday NUMBER := 0;
+BEGIN
+    -- Check if today is a weekday (Mon–Fri)
+    SELECT TO_CHAR(v_today, 'DY', 'NLS_DATE_LANGUAGE=ENGLISH') INTO v_day FROM dual;
+    IF v_day IN ('MON', 'TUE', 'WED', 'THU', 'FRI') THEN
+        RAISE_APPLICATION_ERROR(-20001, 'DML operations are not allowed on weekdays.');
+    END IF;
+
+    -- Check if today is a holiday in the next month
+    SELECT COUNT(*) INTO v_is_holiday
+    FROM holidays
+    WHERE holiday_date = v_today
+      AND holiday_date BETWEEN v_next_month_start AND v_next_month_end;
+
+    IF v_is_holiday > 0 THEN
+        RAISE_APPLICATION_ERROR(-20002, 'DML operations are not allowed on public holidays.');
+    END IF;
+END;
+```
