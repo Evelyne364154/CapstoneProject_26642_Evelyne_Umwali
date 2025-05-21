@@ -783,11 +783,12 @@ COMMIT;
 ```
 
 ✅ 1. Simple Trigger Implementation
+
 This trigger blocks INSERT, UPDATE, DELETE on weekdays and public holidays.
 
-🔹 Trigger: trg_restrict_weekday_holiday_dml
+🔹 Trigger: trg
 ```sql
-CREATE OR REPLACE TRIGGER trg_restrict_weekday_holiday_dml
+CREATE OR REPLACE TRIGGER trg
 BEFORE INSERT OR UPDATE OR DELETE ON transactions
 FOR EACH ROW
 DECLARE
@@ -803,7 +804,6 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'DML operations are not allowed on weekdays.');
     END IF;
 
-    -- Check if today is a holiday in the next month
     SELECT COUNT(*) INTO v_is_holiday
     FROM holidays
     WHERE holiday_date = v_today
@@ -814,3 +814,4 @@ BEGIN
     END IF;
 END;
 ```
+
