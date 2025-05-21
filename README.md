@@ -209,14 +209,6 @@ Code for database creation and table creation
 
 ```sql
 
--- Database creation
-
-CREATE USER GrpE_26642_Evelyne_BioTxn_DB
-
-IDENTIFIED BY Evelyne;
-
-GRANT CONNECT, RESOURCE, DBA TO GrpE_26642_Evelyne_BioTxn_DB;
-
 -- Table creation
 
 CREATE TABLE users (
@@ -294,7 +286,7 @@ CREATE TABLE users (
     created_at DATE DEFAULT SYSDATE
 );
 ```
-![user table](https://github.com/user-attachments/assets/94142a26-f392-451f-9212-5e379652e89f)
+
 
 Transaction table
 
@@ -308,7 +300,7 @@ CREATE TABLE transactions (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 ```
-![transaction table](https://github.com/user-attachments/assets/1f947e5c-8c5e-429c-b07a-168feed5fb13)
+
 
 Biometric Data table
 
@@ -323,7 +315,7 @@ CREATE TABLE biometric_data (
 );
 ```
 
-![BiometricData](https://github.com/user-attachments/assets/f6e1d9d7-bc83-45b2-98e5-c644fc59a15a)
+
 
 AuthenticationLogs Table
 ```sql
@@ -338,7 +330,7 @@ CREATE TABLE authentication_logs (
 );
 ```
 
-![AuthenticationLogs table](https://github.com/user-attachments/assets/8c4e9d43-60cb-4d2a-a5d0-3e71d2aa91a2)
+
 
 Inserting data
 
@@ -354,8 +346,6 @@ INSERT INTO users (user_id, username,email,created_at)
 VALUES (3, 'Racia Akliza' , 'rc@gmail.com',TO_DATE('2024-04-25','YYYY-MM-DD'));
 
 ```
-![UserTable Inserted](https://github.com/user-attachments/assets/2fc4a5fc-7232-443b-a7b0-42a5df58cf7d)
-
 
 Transaction table
 
@@ -397,8 +387,6 @@ VALUES  (103,
          3000000,        
          SYSDATE);
 ```
-![TransactionTable Inserted](https://github.com/user-attachments/assets/67e98f97-d4cf-45a1-b3d8-54b0f43dd3b4)
-
 
 Biometric data table
 
@@ -439,7 +427,7 @@ VALUES  (3,
          EMPTY_BLOB(),  
          SYSDATE);
 ```
-![Biometricdata Inserted](https://github.com/user-attachments/assets/e98ea2e5-02e4-4d32-87ef-39280e395868)
+
 
 Authentication table
 
@@ -481,7 +469,7 @@ VALUES  (1003,
          'FAIL',     
          SYSDATE);  
 ```
-![AuthenticationLogs table Inserted](https://github.com/user-attachments/assets/7b130ea0-682a-431a-9003-b92fbf028bbe)
+
 
 #### 3 ▪ Integrity Validation Queries
 
@@ -566,7 +554,7 @@ Here is an example of inserting data as we did it in the above queries
               SYSDATE);
 ```
 
-![AuthenticationLogs table Inserted](https://github.com/user-attachments/assets/7b130ea0-682a-431a-9003-b92fbf028bbe)
+
 
 Updating data in my Database
 
