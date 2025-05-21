@@ -233,7 +233,7 @@ Purpose: Makes the PDB active and ready for operations.
 
 3.save the newly created PDB.
 ```sql
-SQL> alter pluggable database tue_falcon_healthandFitnesstrackingSystem save state;
+SQL> alter pluggable database wed_26642_biometric_Based_Transaction_System save state;
 
 Pluggable database altered.
 ```
@@ -265,45 +265,6 @@ Grant Basic Privileges
 Grant succeeded.
 ```
 Purpose: To assigns full privileges for database operations.
-
-Code for database creation and table creation
-
-```sql
-
--- Table creation
-
-CREATE TABLE users (
-    user_id NUMBER PRIMARY KEY,
-    username VARCHAR2(50) NOT NULL UNIQUE,
-    email VARCHAR2(100),
-    created_at DATE DEFAULT SYSDATE
-);
-CREATE TABLE biometric_data (
-    user_id NUMBER PRIMARY KEY, 
-    fingerprint_data BLOB,
-    face_scan BLOB,
-    iris_scan BLOB,
-    created_at DATE DEFAULT SYSDATE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-CREATE TABLE transactions (
-    transaction_id NUMBER PRIMARY KEY,
-    user_id NUMBER NOT NULL,
-    transaction_type VARCHAR2(50),
-    amount NUMBER(10, 2),
-    transaction_time DATE DEFAULT SYSDATE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-CREATE TABLE authentication_logs (
-    log_id NUMBER PRIMARY KEY,
-    transaction_id NUMBER NOT NULL,
-    user_id NUMBER NOT NULL,
-    auth_status VARCHAR2(20), 
-    attempt_time DATE DEFAULT SYSDATE,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-```
 
 ### **Oracle Enterprise Manager (OEM)**
 
