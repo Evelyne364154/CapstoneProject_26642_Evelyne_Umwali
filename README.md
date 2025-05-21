@@ -204,7 +204,66 @@ Presentation of the logical model with a clear ER diagram
 
 #### Pluggable database creation
 ![pdbs creation](https://github.com/user-attachments/assets/9070771a-45cd-404a-b8bc-6871701f5783)
+📠 What This Phase Covers
+This phase focuses on creating a Pluggable Database (PDB) and converting the logical model into a physical database structure. It ensures that all tables, relationships, and constraints are implemented to meet project requirements.
 
+🔨Database Creation
+The Pluggable Database (PDB) was created using the following naming format:
+```sql
+Database Name:wed_26642_biometric_Based_Transaction_System
+Username: evelyne
+Password: evelyne
+```
+Steps Executed in SQL Command Prompt
+1.Create a pluggable database:
+```sql
+create pluggable database wed_26642_biometric_Based_Transaction_System
+  2  admin user wed_26642_biometric_Based_Transaction_System identified by evelyne
+  3  file_name_convert=('D:\ORACLE\ORADATA\ORCADATA\XE\PDBseed\','D:\ORACLE\ORADATA\XE\wed_26642_biometric_Based_Transaction_System\');
+
+ Pluggable database created.
+```
+2.Open the newly created PDB:
+```sql
+ alter pluggable database wed_26642_biometric_Based_Transaction_System open ;
+
+Pluggable database altered.
+```
+Purpose: Makes the PDB active and ready for operations.
+
+3.save the newly created PDB.
+```sql
+SQL> alter pluggable database tue_falcon_healthandFitnesstrackingSystem save state;
+
+Pluggable database altered.
+```
+Purpose: Ensures the PDB remains open after the database restarts.
+
+4. Set the Session Container
+   
+```sql
+SQL> alter session set container =wed_26642_biometric_Based_Transaction_System;
+
+Session altered.
+```
+Purpose: Switches the session to the newly created PDB for subsequent operations.
+
+5.User Creation and Privilege Assignment
+
+Create a Database User
+```sql
+SQL> create user tue_falcon identified by falcon;
+
+User created.
+```
+Purpose: Creates a new user, evelyne, with the password evelyne.
+Grant Basic Privileges
+```sql
+ SQL> grant all privileges to tue_falcon;
+
+Grant succeeded.
+```
+Purpose: To assigns full privileges for database operations.
 Code for database creation and table creation
 
 ```sql
