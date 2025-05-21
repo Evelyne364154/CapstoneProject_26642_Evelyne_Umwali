@@ -817,7 +817,7 @@ Auditing enables real-time tracking of sensitive operations to strengthen securi
 
 ## 📠**2. Trigger Implementation**
 
-###🔹 **Step 1: Holiday Table**
+### 🔹 **Step 1: Holiday Table**
 
 ```sql
 CREATE TABLE holidays (
