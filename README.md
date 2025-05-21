@@ -6,9 +6,9 @@
 
 # 🧬 Project Title: BIOMETRIC BASED TRANSACTION SYSTEM
 
-## ** 🌀 Phase I **
+## **🌀 Phase I**
 
-## ** Introduction **
+## **Introduction**
 
 In an era where digital transactions are at the core of daily operations across financial, healthcare, educational, and government sectors, ensuring secure and reliable authorization methods has become critical. Traditional security approaches—such as PINs, passwords, and security tokens—are increasingly vulnerable to breaches, identity theft, and social engineering attacks. To address these challenges, the Biometric-Based Transaction Authorization System offers a modern, robust, and user-friendly solution.
 
@@ -16,11 +16,11 @@ The Biometric-Based Transaction Authorization System not only enhances the secur
 
 By integrating advanced biometric authentication mechanisms, this system aims to redefine trust and security in digital transactions, ensuring privacy, accuracy, and compliance with modern data protection standards.
 
-## 🎯 ** Problem Statement **
+## 🎯 **Problem Statement**
 
 Traditional transaction authorization methods—such as passwords, PINs, and security tokens—are vulnerable to security breaches, identity theft, and human error. These methods lack robust verification of a user’s identity, especially in high-risk sectors involving sensitive or high-value transactions. The absence of strong authentication mechanisms increases the risk of fraud and unauthorized access to financial or confidential data.
 
-## 👁️ ** Context **
+## 👁️ **Context**
 
 This system is intended for use in environments where secure, fast, and reliable transaction authorization is critical. Target sectors include:
 
@@ -34,7 +34,7 @@ This system is intended for use in environments where secure, fast, and reliable
 
 - The system can be integrated into both physical point-of-sale systems and online transaction platforms, ensuring versatility in deployment.
 
-### 🧑‍💼 ** Target Users **
+### 🧑‍💼 **Target Users**
 
 - 🏦 Bank customers and staff performing or validating transactions.
 
@@ -46,7 +46,7 @@ This system is intended for use in environments where secure, fast, and reliable
 
 - 💼 Business employees and clients requiring secure login and authorization for enterprise transactions.
 
-## ** Project Goals **
+## **Project Goal**
 
 - Enhance Security: Replace weak password/PIN-based authentication with unique biometric identifiers (e.g., fingerprints, facial recognition).
 
@@ -59,16 +59,16 @@ This system is intended for use in environments where secure, fast, and reliable
 - Support Audit and Monitoring: Log and trace every transaction authorization attempt for accountability and legal compliance.
 
 
-## 🌀 ** Phase II **
+## 🌀 **Phase II**
 
-## 🗺️ ** 1. Define the Scope**
+## 🗺️ **1. Define the Scope**
 
-### 🔄 ** Business Process: **
+### 🔄 **Business Process:**
 
-## 📜** Description:**
+## 📜**Description:**
 This process outlines how a financial or institutional system uses biometric data (such as fingerprint, facial recognition, or iris scan) to authorize transactions securely. The process ensures that only verified users can initiate or approve sensitive operations, especially in banking, healthcare, or government service platforms.
 
-### ** Objectives **
+### **Objectives**
 
 - Authenticate users with high accuracy using biometric data.
 
@@ -78,7 +78,7 @@ This process outlines how a financial or institutional system uses biometric dat
 
 - Enable seamless and secure customer service workflows.
 
-## 📈 ** Expected Outcomes: **
+## 📈 **Expected Outcomes:**
 
 - Enhanced security and user authentication.
 
@@ -88,7 +88,7 @@ This process outlines how a financial or institutional system uses biometric dat
 
 - Streamlined and auditable approval workflows.
   
-## 🧩 ** 2. Identify Key Entities **
+## 🧩 **2. Identify Key Entities**
 
 Entity	Role / Description
 
@@ -100,7 +100,7 @@ Entity	Role / Description
   
 - Transactions: Executes the transaction if authorization is successful.
 
-## 🏊‍♂️ ** Swimlanes to Use **
+## 🏊‍♂️ **Swimlanes to Use**
 
 Organize your diagram using the following swimlanes:
 
@@ -114,14 +114,14 @@ Organize your diagram using the following swimlanes:
 
 - Biometric Data Table – Stores registered biometric data.
 
-## 🖇️ ** The presentation of my process visually using  UML/BPMN Notations. **
+## 🖇️ **The presentation of my process visually using  UML/BPMN Notations.**
 
 ![pl BPMN](https://github.com/user-attachments/assets/38a171ad-1655-4aa8-9dae-1da10227fa58)
 
 
-## 💬 ** Explanation of the BPMN Diagram **
+## 💬 **Explanation of the BPMN Diagram**
 
-### ✍️ ** Main Components and Their Interactions . **
+### ✍️ **Main Components and Their Interactions .**
 
 The diagram consists of four swimlanes representing key entities: User, Transaction System, Biometric Data Table, and Authentication Logs Table. The process begins when a User initiates a transaction, triggering the system to request biometric authentication. The Transaction System captures the user’s biometric input and queries the Biometric Data Table to verify it against stored biometric templates.
 
@@ -142,9 +142,9 @@ Implementing biometric-based authorization reduces fraud and unauthorized access
 
 This system also enables real-time monitoring, giving managers access to accurate, up-to-date information for faster incident response and better resource allocation—key goals of any modern MIS.
 
-## 🌀 ** Phase III **
+## 🌀 **Phase III**
 
-### 🔢 ** Logical Model Design **
+### 🔢 **Logical Model Design**
 
 | Entity                | Attributes                                            | PK / FK                             | Data Types                 |
 | --------------------- | ----------------------------------------------------- | ----------------------------------- | -------------------------- |
@@ -153,7 +153,7 @@ This system also enables real-time monitoring, giving managers access to accurat
 | **BiometricData**     | user\_id, fingerprint_data, face_scan,iris_scan, created\_at | PK: biometric\_id<br>FK: user\_id   | VARCHAR,VARCHAR, VARCHAR, TIMESTAMP    |
 | **AuthenticationLog** | log\_id, transaction\_id, user_id, auth\_status, attempt\_time  | PK: log\_id<br>FK: transaction\_id  | INT, VARCHAR, DATE |
 
-### 🔃 ** 2. Relationships & Constraints **
+### 🔃 **2. Relationships & Constraints**
 
 #### Relationships
 | From Entity | To Entity         | Relationship Type | Description                              |
@@ -164,7 +164,7 @@ This system also enables real-time monitoring, giving managers access to accurat
 | User        | AuthenticationLog | One-to-Many       | Logs tied to user's transaction attempts |
 
 
-### ** Constraints **
+### **Constraints**
 
 - email, phone_number → UNIQUE NOT NULL
 
@@ -176,7 +176,7 @@ This system also enables real-time monitoring, giving managers access to accurat
 
 - amount → CHECK (amount > 0)
 
-### 📩 ** 3. Normalization (Up to 3NF) **
+### 📩 **3. Normalization (Up to 3NF)**
 
 | **Form** | **Explanation**                                                                                    |
 | -------- | -------------------------------------------------------------------------------------------------- |
@@ -192,21 +192,21 @@ This system also enables real-time monitoring, giving managers access to accurat
 
 - Can handle authentication failures (no biometric match) and fraud analysis through remarks
 
-### 📊 ** 5. Presentation & Review **
+### 📊 **5. Presentation & Review**
 
 Presentation of the logical model with a clear ER diagram 
 
 ![ER Diagram PL](https://github.com/user-attachments/assets/e304a1dc-e39a-4d97-bb9c-bb8bb2836403)
 
-### 🌀 ** Phase IV **
+### 🌀 **Phase IV**
 
-### ** Pluggable database creation **
+### **Pluggable database creation**
 ![pdbs creation](https://github.com/user-attachments/assets/9070771a-45cd-404a-b8bc-6871701f5783)
 
-📠 ** What This Phase Covers **
+📠 **What This Phase Covers**
 This phase focuses on creating a Pluggable Database (PDB) and converting the logical model into a physical database structure. It ensures that all tables, relationships, and constraints are implemented to meet project requirements.
 
-🔨** Database Creation **
+🔨**Database Creation**
 The Pluggable Database (PDB) was created using the following naming format:
 ```sql
 Database Name:wed_26642_biometric_Based_Transaction_System
@@ -305,11 +305,11 @@ CREATE TABLE authentication_logs (
 );
 ```
 
-### ** Oracle Enterprise Manager (OEM) **
+### **Oracle Enterprise Manager (OEM)**
 
 Oracle Enterprise Manager (OEM) is not a PL/SQL keyword or feature—it’s Oracle’s web-based administrative console for the entire Oracle technology stack (databases, middleware, engineered systems, cloud services, etc.). When people mention OEM while discussing PL/SQL code, they’re usually talking about using the OEM interface to manage, monitor, or debug that code inside the database.
 
-### ⚖️ ** Oracle Enterprise Manager (OEM) **
+### ⚖️ **Oracle Enterprise Manager (OEM)**
 
 The OEM interface confirmed:
 
@@ -317,27 +317,27 @@ Successful creation of the database.
 
 Proper implementation of relationships between tables.
 
-### 📸 ** OEM confirm successful database creation and table relationships. **
+### 📸 **OEM confirm successful database creation and table relationships.**
 
 ![OEM dashboard](https://github.com/user-attachments/assets/da1887a0-ada6-49dc-9438-1263e42a3706)
 
 ![Resourece](https://github.com/user-attachments/assets/e26621ba-00d4-4a08-a6cc-88d8841be41f)
 
-### 🔭 ** Conclusion About this phase **
+### 🔭 **Conclusion About this phase**
 
 This phase successfully established the pluggable database and implemented the physical structure, enabling efficient data management for the Biometric based transaction system.
 
-## 🌀 ** Phase V **
+## 🌀 **Phase V**
 
 ### Physical Database Structure
 
 Physical Database Structure converts the logical Entity-Relationship model into a physical Oracle database structure, implementing all required tables, relationships, and data integrity constraints to support biometric-based authentication for secure financial transactions.
 
-## 🧱 ** Table Creation **
+## 🧱 **Table Creation**
 
 Here are the created tables & codes used to create them
 
-📋 ** User table ** 
+📋 **User table** 
 
 ```sql
 CREATE TABLE users (
@@ -349,7 +349,7 @@ CREATE TABLE users (
 ```
 
 
-📋 ** Transaction table **
+📋 **Transaction table**
 
 
 ```sql
@@ -364,7 +364,7 @@ CREATE TABLE transactions (
 ```
 
 
-📋 ** Biometric Data table **
+📋 **Biometric Data table**
 
 ```sql
 CREATE TABLE biometric_data (
@@ -379,7 +379,7 @@ CREATE TABLE biometric_data (
 
 
 
-📋 ** AuthenticationLogs Table **
+📋 **AuthenticationLogs Table**
 
 ```sql
 CREATE TABLE authentication_logs (
@@ -397,7 +397,7 @@ CREATE TABLE authentication_logs (
 
 Inserting data
 
-📋 ** User table **
+📋 **User table**
 
 ```sql
 
@@ -451,7 +451,7 @@ VALUES  (103,
          SYSDATE);
 ```
 
-📋 ** Biometric data table **
+📋 **Biometric data table**
 
 ```sql
 INSERT INTO biometric_data 
@@ -492,7 +492,7 @@ VALUES  (3,
 ```
 
 
-### 📋 ** Authentication table **
+### 📋 **Authentication table**
 
 ```sql
    
@@ -534,9 +534,9 @@ VALUES  (1003,
 ```
 
 
-## ** 3 ▪ Integrity Validation Queries **
+## **3 ▪ Integrity Validation Queries**
 
-### ** Check each transaction has exactly one latest auth result. **
+### **Check each transaction has exactly one latest auth result.**
 
 ```sql
         
@@ -549,7 +549,7 @@ GROUP  BY t.transaction_id;
 
 ![data integrity validation qeuries ](https://github.com/user-attachments/assets/a40be81b-0787-4524-ad40-4cab50e5d77d)
 
-### ** Confirm no orphan biometric rows **
+### **Confirm no orphan biometric rows**
 
 An orphan row is a record that has lost (or never had)
 
@@ -568,13 +568,13 @@ WHERE  user_id IS NULL;
 
 ## Phase VI
 
-### 🔄 ** Database Interaction and Transactions **
+### 🔄 **Database Interaction and Transactions**
 
 This phase focuses on performing Database Operations (both DML and DDL), utilizing various join types to interact with the database and ensure reliable data management. Additionally, it covers Transaction Management to maintain data consistency and integrity during multi-step operations. This ensures the system remains consistent and accurate when processing multiple transactions.
 
 1. Database Operations
    
-### ⚓ ** DDL (Data Definition Language) **
+### ⚓ **DDL (Data Definition Language)**
 
 Create essential tables for the system
 
@@ -596,7 +596,7 @@ CREATE TABLE authentication_logs (
 
 ![AuthenticationLogs table](https://github.com/user-attachments/assets/8c4e9d43-60cb-4d2a-a5d0-3e71d2aa91a2)
 
-### ❄️ ** DML (Data Manipulation Language) **
+### ❄️ **DML (Data Manipulation Language)**
 
 Insert, update, and delete sample data:
 
@@ -647,7 +647,7 @@ Here is an example of deleted data in Authentication table as we know before we 
 
 2. Task Requirements
 
-### 🛡️ ** Simple Problem Statement **
+### 🛡️ **Simple Problem Statement**
 
 Problem: Identify users who frequently perform high-value transactions (above a certain threshold) to improve security monitoring.
 
@@ -665,7 +665,7 @@ WHERE amount > 1000000;
 
 3. Procedures and Functions
    
-### 🔐 ** Procedure to Fetch Transactions by User **
+### 🔐 **Procedure to Fetch Transactions by User**
 
 ```sql
 CREATE OR REPLACE PROCEDURE fetch_transactions_by_user (
@@ -685,7 +685,7 @@ END;
 ```
 ## **Cursors are used implicitly in this section:**
 
-### ** 🔍 Explanation:**
+### **🔍 Explanation:**
 
 - The line FOR rec IN (SELECT * FROM transactions WHERE user_id = p_user_id) uses a cursor FOR loop.
 
@@ -695,7 +695,7 @@ END;
 
 - The variable rec represents each row returned by the query.
   
-**💡 If you want to use an explicit cursor, here's how you would rewrite it: **
+**💡 If you want to use an explicit cursor, here's how you would rewrite it:**
 
 ```sql
 CREATE OR REPLACE PROCEDURE fetch_transactions_by_user_explicit (
@@ -720,7 +720,7 @@ END;
 ```
 
 
-### ♻️ ** Function to Get Total Transaction Amount ** 
+### ♻️ **Function to Get Total Transaction Amount** 
 
 ```sql
 CREATE OR REPLACE FUNCTION get_total_amount (
@@ -739,7 +739,7 @@ END;
 
 ![total amount queries](https://github.com/user-attachments/assets/7819e951-e00e-425b-9fd5-8ca474021cfa)
 
-4. ** Testing **
+4. **Testing**
    
 Run tests with sample data:
 
@@ -754,7 +754,7 @@ SELECT get_total_amount(1) AS total_spent FROM dual;
 
 5. Packages
 
-### 🚧 ** Create Package Specification**
+### 🚧 **Create Package Specification**
 
 🎡 Create Package Body
 
@@ -792,7 +792,7 @@ BEGIN
 END;
 
 ```
-### 🌀** Phase VII**
+### 🌀**Phase VII**
 
 ## 🗂 1. Problem Statement Development
     
@@ -815,7 +815,7 @@ Packages and functions provide modular and reusable logic for checking holidays 
 
 Auditing enables real-time tracking of sensitive operations to strengthen security and support compliance.
 
-## 📠** 2. Trigger Implementation**
+## 📠**2. Trigger Implementation**
 
 ###🔹 **Step 1: Holiday Table**
 
@@ -971,7 +971,7 @@ CREATE TABLE audit_log (
 
 ```
 
-**🔹 Step 2: Audit Trigger**
+**Step 2: Audit Trigger**
 
 ```sql
 CREATE OR REPLACE TRIGGER trg_audit_transactions
