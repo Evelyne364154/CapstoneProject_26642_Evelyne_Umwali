@@ -4,9 +4,11 @@
 
 ## PL/SQL EXAM.
 
+# 🧮 Project Title: BIOMETRIC BASED TRANSACTION SYSTEM
+
 ### Phase I
 
-# BIOMETRIC BASED TRANSACTION SYSTEM
+### Introduction
 
 In an era where digital transactions are at the core of daily operations across financial, healthcare, educational, and government sectors, ensuring secure and reliable authorization methods has become critical. Traditional security approaches—such as PINs, passwords, and security tokens—are increasingly vulnerable to breaches, identity theft, and social engineering attacks. To address these challenges, the Biometric-Based Transaction Authorization System offers a modern, robust, and user-friendly solution.
 
@@ -16,7 +18,7 @@ The Biometric-Based Transaction Authorization System not only enhances the secur
 
 By integrating advanced biometric authentication mechanisms, this system aims to redefine trust and security in digital transactions, ensuring privacy, accuracy, and compliance with modern data protection standards.
 
-##### Problem Statement
+##### 🎯 Problem Statement
 
 Traditional transaction authorization methods—such as passwords, PINs, and security tokens—are vulnerable to security breaches, identity theft, and human error. These methods lack robust verification of a user’s identity, especially in high-risk sectors involving sensitive or high-value transactions. The absence of strong authentication mechanisms increases the risk of fraud and unauthorized access to financial or confidential data.
 
@@ -195,14 +197,13 @@ This system also enables real-time monitoring, giving managers access to accurat
 ### 📊 5. Presentation & Review
 
 Presentation of the logical model with a clear ER diagram 
-![ER Diagram PL](https://github.com/user-attachments/assets/e304a1dc-e39a-4d97-bb9c-bb8bb2836403)
 
+![ER Diagram PL](https://github.com/user-attachments/assets/e304a1dc-e39a-4d97-bb9c-bb8bb2836403)
 
 ### Phase IV
 
-#### Database Creation
-
-![Database Creation](https://github.com/user-attachments/assets/6397f192-593b-4120-940c-98da87008025)
+#### Pluggable database creation
+![pdbs creation](https://github.com/user-attachments/assets/9070771a-45cd-404a-b8bc-6871701f5783)
 
 Code for database creation and table creation
 
@@ -255,22 +256,29 @@ CREATE TABLE authentication_logs (
 
 Oracle Enterprise Manager (OEM) is not a PL/SQL keyword or feature—it’s Oracle’s web-based administrative console for the entire Oracle technology stack (databases, middleware, engineered systems, cloud services, etc.). When people mention OEM while discussing PL/SQL code, they’re usually talking about using the OEM interface to manage, monitor, or debug that code inside the database.
 
-##### Dashboard of my database.
+#### ⚖️ Oracle Enterprise Manager (OEM)
 
-![OEM dashboard](https://github.com/user-attachments/assets/7d8e7171-689a-40de-8b1a-40f2e84788df)
+The OEM interface confirmed:
 
+Successful creation of the database.
 
-##### Sessions or performance charts.
+Proper implementation of relationships between tables.
 
-- Performance metrics
+#### 📸 OEM confirm successful database creation and table relationships.
 
-![Performance Metrics](https://github.com/user-attachments/assets/9a130b3b-574d-4a95-8116-ea4df4e05ee0)
+![OEM dashboard](https://github.com/user-attachments/assets/da1887a0-ada6-49dc-9438-1263e42a3706)
 
-- Sql monitoring
+![Resourece](https://github.com/user-attachments/assets/e26621ba-00d4-4a08-a6cc-88d8841be41f)
 
-![Sql Monitoring](https://github.com/user-attachments/assets/00a2eeed-e0e8-418f-a831-d106bff41541)
+#### 🔭 Conclusion About this phase
+
+This phase successfully established the pluggable database and implemented the physical structure, enabling efficient data management for the Biometric based transaction system.
 
 ## Phase V
+
+##### Physical Database Structure
+
+Physical Database Structure converts the logical Entity-Relationship model into a physical Oracle database structure, implementing all required tables, relationships, and data integrity constraints to support biometric-based authentication for secure financial transactions.
 
 #### Table Creation
 
@@ -433,7 +441,6 @@ VALUES  (3,
 ```
 ![Biometricdata Inserted](https://github.com/user-attachments/assets/e98ea2e5-02e4-4d32-87ef-39280e395868)
 
-
 Authentication table
 
 ```sql
@@ -507,5 +514,240 @@ WHERE  user_id IS NULL;
 ```
 
 ![Every user_id present in biometric_data is also present in users (Data Integrity)](https://github.com/user-attachments/assets/b89beab8-31e9-4354-9b2d-c98a63f6c185)
+
+## Phase VI
+
+### 🔄Database Interaction and Transactions
+
+This phase focuses on performing Database Operations (both DML and DDL), utilizing various join types to interact with the database and ensure reliable data management. Additionally, it covers Transaction Management to maintain data consistency and integrity during multi-step operations. This ensures the system remains consistent and accurate when processing multiple transactions.
+
+1. Database Operations
+   
+### ⚓ DDL (Data Definition Language)
+
+Create essential tables for the system
+
+As we have done above DDL is for creating table 
+
+Here is an example of of creating AuthenticationLogs Table
+
+```sql
+CREATE TABLE authentication_logs (
+    log_id NUMBER PRIMARY KEY,
+    transaction_id NUMBER NOT NULL,
+    user_id NUMBER NOT NULL,
+    auth_status VARCHAR2(20), 
+    attempt_time DATE DEFAULT SYSDATE,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
+
+![AuthenticationLogs table](https://github.com/user-attachments/assets/8c4e9d43-60cb-4d2a-a5d0-3e71d2aa91a2)
+
+### ❄️ DML (Data Manipulation Language)
+
+Insert, update, and delete sample data:
+
+Here is an example of inserting data as we did it in the above queries
+
+```sql
+   
+ INSERT INTO authentication_logs 
+         (log_id,
+         transaction_id,
+         user_id,
+         auth_status,
+         attempt_time)
+      VALUES (1001,
+             101,
+             1, 
+             'SUCCESS',
+              SYSDATE);
+```
+
+![AuthenticationLogs table Inserted](https://github.com/user-attachments/assets/7b130ea0-682a-431a-9003-b92fbf028bbe)
+
+Updating data in my Database
+
+```sql
+
+-- Update
+UPDATE users SET username = 'Evelyne' WHERE user_id = 1;
+
+```
+
+![updating data](https://github.com/user-attachments/assets/9ec0b95a-112b-477e-830e-023419601895)
+
+Here is the table which shows the updated user after using the query
+
+![Table of updated user](https://github.com/user-attachments/assets/122de8cd-cf8b-48d1-b197-446614c5abbb)
+
+Deleting data in database 
+
+```sql
+DELETE FROM authentication_logs
+WHERE log_id = 1003;  
+```
+
+![query to delete data](https://github.com/user-attachments/assets/59c2ae37-6fd2-4fdf-b8a6-f6a952ea8215)
+
+Here is an example of deleted data in Authentication table as we know before we had 3 data inserted in table authentication.So deleted data where log_id=1003
+
+![A table which shows deleted data](https://github.com/user-attachments/assets/78ea97df-8f0d-43f8-b6a7-25135e52c181)
+
+2. Task Requirements
+
+🛡️  Simple Problem Statement
+
+Problem: Identify users who frequently perform high-value transactions (above a certain threshold) to improve security monitoring.
+
+Use of Windows Functions Example:
+
+```sql
+SELECT 
+    user_id, 
+    amount,
+    RANK() OVER (PARTITION BY user_id ORDER BY amount DESC) AS transaction_rank
+FROM transactions
+WHERE amount > 1000000;
+```
+![Selecting query](https://github.com/user-attachments/assets/6ecc29f9-961b-4ed4-965c-0624258d1aa3)
+
+3. Procedures and Functions
+   
+#### 🔐 Procedure to Fetch Transactions by User
+
+```sql
+CREATE OR REPLACE PROCEDURE fetch_transactions_by_user (
+    p_user_id IN NUMBER
+) AS
+BEGIN
+    FOR rec IN (
+        SELECT * FROM transactions WHERE user_id = p_user_id
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Transaction: ' || rec.transaction_id || ', Amount: ' || rec.amount);
+    END LOOP;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+
+```
+##### Cursors are used implicitly in this section:
+
+🔍 Explanation:
+
+- The line FOR rec IN (SELECT * FROM transactions WHERE user_id = p_user_id) uses a cursor FOR loop.
+
+- This is an example of a implicit cursor.
+
+- Oracle automatically creates and manages the cursor for the SQL query inside the loop.
+
+- The variable rec represents each row returned by the query.
+  
+💡 If you want to use an explicit cursor, here's how you would rewrite it:
+
+```sql
+CREATE OR REPLACE PROCEDURE fetch_transactions_by_user_explicit (
+    p_user_id IN NUMBER
+) AS
+    CURSOR txn_cursor IS
+        SELECT * FROM transactions WHERE user_id = p_user_id;
+    txn_row txn_cursor%ROWTYPE;
+BEGIN
+    OPEN txn_cursor;
+    LOOP
+        FETCH txn_cursor INTO txn_row;
+        EXIT WHEN txn_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Transaction: ' || txn_row.transaction_id || ', Amount: ' || txn_row.amount);
+    END LOOP;
+    CLOSE txn_cursor;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+
+```
+
+
+#### ♻️ Function to Get Total Transaction Amount
+
+```sql
+CREATE OR REPLACE FUNCTION get_total_amount (
+    p_user_id IN NUMBER
+) RETURN NUMBER IS
+    total_amt NUMBER := 0;
+BEGIN
+    SELECT SUM(amount) INTO total_amt FROM transactions WHERE user_id = p_user_id;
+    RETURN NVL(total_amt, 0);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN RETURN 0;
+    WHEN OTHERS THEN RETURN -1;
+END;
+
+```
+
+![total amount queries](https://github.com/user-attachments/assets/7819e951-e00e-425b-9fd5-8ca474021cfa)
+
+4. Testing
+   
+Run tests with sample data:
+
+```sql
+-- Test procedure
+EXEC fetch_transactions_by_user(1);
+
+-- Test function
+SELECT get_total_amount(1) AS total_spent FROM dual;
+
+```
+
+5. Packages
+
+#### 🚧 Create Package Specification
+
+🎡 Create Package Body
+
+```sql
+CREATE OR REPLACE PACKAGE biometric_pkg IS
+  PROCEDURE fetch_transactions_by_user(p_user_id NUMBER);
+END biometric_pkg;
+
+```
+You must now write and compile the package body like this:
+```sql
+CREATE OR REPLACE PACKAGE BODY biometric_pkg IS
+
+  PROCEDURE fetch_transactions_by_user(p_user_id NUMBER) IS
+    v_amount transactions.amount%TYPE;
+  BEGIN
+    FOR rec IN (SELECT transaction_id, amount, transaction_time
+                FROM transactions
+                WHERE user_id = p_user_id) LOOP
+      DBMS_OUTPUT.PUT_LINE('Transaction ID: ' || rec.transaction_id ||
+                           ', Amount: ' || rec.amount ||
+                           ', Time: ' || rec.transaction_time);
+    END LOOP;
+  END;
+
+END biometric_pkg;
+
+```
+
+Query for calling procedure
+
+```sql
+BEGIN
+  biometric_pkg.fetch_transactions_by_user(1);
+END;
+
+```
+### Phase VII
+
+
+
+
+
 
 
