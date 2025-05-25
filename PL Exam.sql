@@ -452,5 +452,5 @@ END AFTER STATEMENT;
 
 END trg_audit_transactions_bulk;
 
-
+ROLLBACK;
 COMMIT;
